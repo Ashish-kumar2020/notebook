@@ -6,6 +6,7 @@ import noteContext from "./noteContext";
 
 
 const NoteState = (props) => {
+  const host = 'http://localhost:5000';
   const notesInitial = [
     {
       "_id": "6204b65d7ae6a9e64b8db5b0",
@@ -81,8 +82,17 @@ const NoteState = (props) => {
   }
 
   // edit a nopte
-  const editNote = () => {
-
+  const editNote =async (id,title,description,tag) => {
+      // API call
+    
+      for(let index = 0; index < notes.length;index++){
+        const element = notes[index];
+        if(element._id === id){
+          element.title = title;
+          element.description = description;
+          element.tag = tag;
+        } 
+      }
   }
   return (
     <noteContext.Provider value={{ notes, addNote,editNote,deleteNote}}>
